@@ -3,6 +3,7 @@ const operatorButtons = document.querySelectorAll("[data-operators]");
 const decimalButton = document.querySelector("[data-decimal]");
 const backspaceButton = document.querySelector("[data-backspace]");
 const equalButton = document.querySelector("[data-equals]");
+const clearButton = document.querySelector("[data-clear]");
 const userInput = document.getElementById("user-input");
 const displayResult = document.getElementById("result");
 
@@ -25,7 +26,8 @@ operatorButtons.forEach((button) =>
     updateOperator(button.textContent);
   })
 );
-
+backspaceButton.onclick = () => backspace();
+clearButton.onclick = () => clear();
 // FUNCTIONS
 function updateNumber(number) {
   userInput.textContent += number;
@@ -70,6 +72,26 @@ function updateOperator(operator) {
 function updateDisplay(result, operator) {
   resultIsThere == true ? (firstNumber = result) : false;
   userInput.textContent = firstNumber + " " + operator + " ";
+  resultIsThere = false;
+}
+
+function backspace() {
+  let lastChar = userInput.textContent.trim().slice(-1);
+  userInput.textContent = userInput.textContent.trim().slice(0, -1);
+  if (lastChar.match(/[+*/-]/)) {
+    operatorIsThere = false;
+    currentOperator = "";
+  }
+}
+
+function clear() {
+  userInput.textContent = "";
+  displayResult.textContent = "";
+  firstNumber = "";
+  secondNumber = "";
+  currentOperator = "";
+  result = "";
+  operatorIsThere = false;
   resultIsThere = false;
 }
 
