@@ -26,8 +26,10 @@ operatorButtons.forEach((button) =>
     updateOperator(button.textContent);
   })
 );
+decimalButton.onclick = () => addDecimalPoint();
 backspaceButton.onclick = () => backspace();
 clearButton.onclick = () => clear();
+
 // FUNCTIONS
 function updateNumber(number) {
   userInput.textContent += number;
@@ -58,6 +60,7 @@ function updateOperator(operator) {
     console.log(secondNumber);
     console.log(currentOperator);
     result = calculate(currentOperator, firstNumber, secondNumber);
+    result = Math.round(result * 100) / 100;
     displayResult.textContent = result;
     resultIsThere = true;
     updateDisplay(result, operator);
@@ -75,10 +78,22 @@ function updateDisplay(result, operator) {
   resultIsThere = false;
 }
 
+function addDecimalPoint() {
+  if (userInput.textContent === "") updateNumber("0");
+  if (firstNumber === "" && userInput.textContent.includes(".")) return;
+  if (firstNumber !== "") {
+    secondNumber = userInput.textContent.split(" ").pop();
+    if (secondNumber === "") updateNumber("0");
+    if (secondNumber.includes(".")) return;
+  }
+  userInput.textContent += ".";
+}
+
 function backspace() {
   let lastChar = userInput.textContent.trim().slice(-1);
   userInput.textContent = userInput.textContent.trim().slice(0, -1);
   if (lastChar.match(/[+*/-]/)) {
+    userInput.textContent = userInput.textContent.trim();
     operatorIsThere = false;
     currentOperator = "";
   }
@@ -112,8 +127,5 @@ function calculate(operator, a, b) {
   }
 }
 
-// ADD POINT
-// ADD BACKSPACE
-// ADD CLEAR
 // ADD KEYBOARD FUNC.
 // ADD EQUALS OPERATOR
