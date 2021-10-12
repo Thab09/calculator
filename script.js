@@ -2,7 +2,6 @@ const numberButtons = document.querySelectorAll("[data-numbers]");
 const operatorButtons = document.querySelectorAll("[data-operators]");
 const decimalButton = document.querySelector("[data-decimal]");
 const backspaceButton = document.querySelector("[data-backspace]");
-const equalButton = document.querySelector("[data-equals]");
 const clearButton = document.querySelector("[data-clear]");
 const userInput = document.getElementById("user-input");
 const displayResult = document.getElementById("result");
