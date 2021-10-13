@@ -1,21 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Gemunu+Libre&display=swap");
-@font-face {
-  font-family: calc-screen;
-  src: url(/fonts/Open-24-Display-St.ttf);
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 26px;
+  font-size: 28px;
+  font-family: "Gemunu Libre", sans-serif;
 }
 
 body {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgb(255, 255, 255);
 }
 
 main {
@@ -25,17 +23,27 @@ main {
   align-items: center;
   width: 360px;
   height: 500px;
-  background-color: rgba(157, 157, 255, 0.2);
+  box-shadow: 0 0 10px #bbbbbb;
   border-radius: 5px;
+  gap: 10px;
 }
 
 #screen {
-  width: 335px;
-  height: 140px;
-  border-radius: 5px;
-  background-color: rgb(163, 163, 163);
-  color: rgb(0, 0, 0);
-  font-family: calc-screen, sans-serif, serif;
+  width: 330px;
+  height: 130px;
+  border-bottom: 3mm ridge rgba(202, 202, 202, 0.979);
+  color: #303030;
+  display: flex;
+  flex-direction: column;
+}
+
+#user-input {
+  padding: 15px 0 0 5px;
+}
+#result {
+  align-self: flex-end;
+  padding: 15px 5px 0 0;
+  font-size: 36px;
 }
 
 .buttons {
@@ -68,10 +76,50 @@ main {
 .numpad :nth-child(13) {
   width: 165px;
 }
+
 button {
   width: 80px;
   height: 60px;
   border: none;
   border-radius: 3px;
-  font-family: "Gemunu Libre", sans-serif;
+  cursor: pointer;
+  background-color: rgba(240, 240, 240, 0.5);
+  color: #303030;
+}
+
+button:hover {
+  background-color: rgb(146, 146, 146);
+  color: #fff;
+  transition: 0.3s;
+}
+
+[data-operators]:hover {
+  background-color: #0d9c00;
+  color: white;
+}
+
+[data-clear]:hover,
+[data-backspace]:hover {
+  background-color: red;
+  color: white;
+}
+
+footer {
+  margin: 50px 0 20px 0;
+}
+
+footer > p > a {
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  color: #adadad;
+  cursor: pointer;
+}
+
+span {
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #6d6c6c;
 }

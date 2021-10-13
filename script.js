@@ -28,8 +28,26 @@ operatorButtons.forEach((button) =>
 decimalButton.onclick = () => addDecimalPoint();
 backspaceButton.onclick = () => backspace();
 clearButton.onclick = () => clear();
+window.addEventListener("keydown", keyboardFunctionality);
 
 // FUNCTIONS
+
+function keyboardFunctionality(e) {
+  if (e.key >= 0 && e.key <= 9) updateNumber(e.key);
+  if (e.key === ".") addDecimalPoint();
+  if (e.key === "Backspace") backspace();
+  if (e.key === "Escape") clear();
+  if (
+    e.key === "+" ||
+    e.key === "-" ||
+    e.key === "%" ||
+    e.key === "^" ||
+    e.key === "/" ||
+    e.key === "*"
+  )
+    updateOperator(e.key);
+}
+
 function updateNumber(number) {
   userInput.textContent += number;
 }
@@ -37,7 +55,6 @@ function updateNumber(number) {
 function updateOperator(operator) {
   let lastChar = userInput.textContent.trim().slice(-1);
   if (userInput.textContent === "" && operator !== "-") {
-    console.log(firstNumber);
     firstNumber = 0;
     userInput.textContent = firstNumber + " " + operator + " ";
     operatorIsThere = true;
@@ -48,16 +65,12 @@ function updateOperator(operator) {
       userInput.textContent.slice(0, -2) + " " + operator + " ";
   } else if (operatorIsThere == true) {
     secondNumber = userInput.textContent.split(" ").pop();
-    // currentOperator = userInput.textContent.split(" ").slice(1, 2);
-    // currentOperator = currentOperator[0];
     currentOperator = userInput.textContent
       .substring(
         userInput.textContent.indexOf(" ") + 1,
         userInput.textContent.lastIndexOf(" ")
       )
       .trim();
-    console.log(secondNumber);
-    console.log(currentOperator);
     result = calculate(currentOperator, firstNumber, secondNumber);
     result = Math.round(result * 100) / 100;
     displayResult.textContent = result;
@@ -66,7 +79,6 @@ function updateOperator(operator) {
   } else if (operatorIsThere == false) {
     firstNumber = userInput.textContent;
     userInput.textContent = userInput.textContent + " " + operator + " ";
-    console.log(Number(firstNumber));
     operatorIsThere = true;
   }
 }
@@ -121,10 +133,9 @@ function calculate(operator, a, b) {
       return a * b;
     case "/":
       return b === 0 ? a : a / b;
+    case "^":
+      return Math.pow(a, b);
     default:
       return "calculate problem";
   }
 }
-
-// ADD KEYBOARD FUNC.
-// ADD EQUALS OPERATOR
