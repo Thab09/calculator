@@ -1,6 +1,6 @@
 # Calculator
 An online calculator built using HTML, CSS and JavaScript.
-[Live Preview](https://thab09.github.io/calculator/)
+Check the website: [Live Preview](https://thab09.github.io/calculator/)
 
 ## Features
 - Basic arithmetic operations are supported (add, subtract, multiply and divide).
