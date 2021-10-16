@@ -1,5 +1,5 @@
 # Calculator
-An online calculator built using HTML, CSS and JavaScript.
+An online calculator built using HTML, CSS and JavaScript.\
 Check the website: [Live Preview](https://thab09.github.io/calculator/)
 
 ## Features
