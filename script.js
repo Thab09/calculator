@@ -60,7 +60,7 @@ function updateOperator(operator) {
     operatorIsThere = true;
   } else if (userInput.textContent === "" && operator === "-") {
     userInput.textContent = operator;
-  } else if (lastChar.match(/[+*/-]/)) {
+  } else if (lastChar.match(/[+*^/-]/)) {
     userInput.textContent =
       userInput.textContent.slice(0, -2) + " " + operator + " ";
   } else if (operatorIsThere == true) {
